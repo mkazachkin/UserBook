@@ -2,6 +2,8 @@ package controller;
 
 import model.UserData;
 
+import java.io.IOException;
+
 public interface DataSavingI {
-    void saveUserData (UserData userData, String filesPath);
+    String saveUserData (UserData userData, String filesPath) throws Exception;
 }

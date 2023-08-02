@@ -10,6 +10,7 @@ public class DataParsing implements DataParsingI{
         String birthDate;
         Integer phoneNumber;
         UserSex sex;
+        if (userString.length() == 0) { throw new UserFormatException("Empty string"); }
         String [] userData = userString.replaceAll("\s+", " ")
                 .trim().split(" ");
         if (userData.length > 6) { throw new UserFormatException("Too many entries"); }
@@ -22,9 +23,8 @@ public class DataParsing implements DataParsingI{
                 .replaceAll("\\(", "")
                 .replaceAll("\\)", "")
                 .replaceAll("-", "");;
-        try {
-            Integer.parseInt(userData[4]);
-        } catch (Exception e) {
+        try { Long.parseLong(userData[4]); }
+        catch (Exception e) {
             throw new UserFormatException("Wrong phone format");
         }
         return new UserData(
@@ -32,12 +32,12 @@ public class DataParsing implements DataParsingI{
                 userData[1],
                 userData[2],
                 userData[3],
-                Integer.parseInt(userData[4]),
+                Long.parseLong(userData[4]),
                 userData[5].charAt(0));
     }
 
     private boolean checkDate(String userDate) {
-        String[] dateNums = userDate.split(".");
+        String[] dateNums = userDate.split("\\.");
         int[] limits = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         if (dateNums.length != 3) return false;
         try {

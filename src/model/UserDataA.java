@@ -5,11 +5,19 @@ public abstract class UserDataA {
     private String midName;
     private String lastName;
     private String birthDate;
-    private int phoneNumber;
+    private Long phoneNumber;
     private UserSex sex;
 
+    public UserDataA() {
+        this.firstName = null;
+        this.midName = null;
+        this.lastName = null;
+        this.birthDate = null;
+        this.phoneNumber = null;
+        this.sex = UserSex.NO_DATA;
+    }
     public UserDataA (String firstName, String midName, String lastName,
-                     String birthDate, int phoneNumber, UserSex sex) {
+                     String birthDate, Long phoneNumber, UserSex sex) {
         this.firstName = firstName;
         this.midName = midName;
         this.lastName = lastName;
@@ -50,11 +58,11 @@ public abstract class UserDataA {
         this.birthDate = birthDate;
     }
 
-    public int getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
